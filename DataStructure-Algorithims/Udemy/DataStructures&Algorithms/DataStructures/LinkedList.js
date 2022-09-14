@@ -87,8 +87,39 @@ class LinkedList {
         }
         return false;
     }
+
+    insertValueAtIndex(index, value) {
+        if (!this.head || index === 0) return this.insertHead(value);
+        if (index === this.length) return this.insertTail(value);
+        if (index < 0 || index > this.length) return false;
+        let newNode = new LinkedNode(value);
+        let tempNode = this.getAtIndex(index - 1);
+        newNode.next = tempNode.next;
+        tempNode.next = newNode;
+        this.length++;
+        return true;
+    }
+
+    removeAtIndex(index) {
+        if (index < 0 || index > this.length) return undefined;
+        if (index === 0) return this.removeHead();
+        if (index === this.length - 1) return this.removeTail();
+        let beforeNode = this.getAtIndex(index - 1);
+        let tempNode = beforeNode.next;
+        beforeNode.next = tempNode.next;
+        tempNode.next = null;
+        this.length--;
+        return tempNode;
+    }
+
+    reverse() {
+        this.tail = this.head;
+        this.head.next = null;
+    }
 }
 
 const linkedList = new LinkedList(4);
 linkedList.insertHead(3);
+linkedList.insertHead(2);
+linkedList.insertHead(1);
 console.log(linkedList);
