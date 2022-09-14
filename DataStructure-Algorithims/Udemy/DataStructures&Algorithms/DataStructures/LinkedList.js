@@ -68,17 +68,27 @@ class LinkedList {
         return this.preNode;
     }
 
-    getAtIndex(value) {
-        if (!this.head || value < 0 || value >= this.length) return undefined;
+    getAtIndex(index) {
+        if (!this.head || index < 0 || index >= this.length) return undefined;
         let temp = 0;
         let tempNode = this.head;
-        while (temp !== value) {
+        while (temp !== index) {
             tempNode = tempNode.next;
             temp++;
         }
         return tempNode;
     }
+
+    setValueAtIndex(value, index) {
+        let node = this.getAtIndex(index);
+        if (node) {
+            node.value = value;
+            return true;
+        }
+        return false;
+    }
 }
 
 const linkedList = new LinkedList(4);
 linkedList.insertHead(3);
+console.log(linkedList);
