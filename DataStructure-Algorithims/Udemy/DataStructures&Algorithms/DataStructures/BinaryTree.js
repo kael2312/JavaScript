@@ -36,6 +36,30 @@ class BinaryTree {
             }
         }
     }
+
+    contains(value) {
+        if (!this.root) return false;
+        let tempNode = this.root;
+        while (tempNode) {
+            if (value == tempNode.value) return true;
+            if (value > tempNode.value) {
+                tempNode = tempNode.right;
+            } else {
+                tempNode = tempNode.left;
+            }
+        }
+        return false;
+    }
+
+    findMin() {
+        if (!this.root) return undefined;
+        if (this.root && !this.root.left && !this.root.right) return this.root;
+        let tempNode = this.root;
+        while (tempNode.left) {
+            tempNode = tempNode.left;
+        }
+        return tempNode;
+    }
 }
 
 let newTree = new BinaryTree();
