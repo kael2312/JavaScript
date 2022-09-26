@@ -15,9 +15,45 @@
  *It does not matter what you leave beyond the returned k (hence they are underscores).
  */
 var removeElement = function (nums, val) {
-    nums.forEach((element, index) => {
-        if()
-    });
+    /*
+    * Solution 1:
+        *for (let i = 0; i < nums.length; i++) {
+        *    if (nums[i] === val) {
+        *        for (let j = i; j < nums.length; j++) {
+        *            nums[j] = nums[j + 1];
+        *        }
+        *        i--;
+        *    }        
+        *}
+
+        *for (let i = 0; i < nums.length; i++) {
+        *    if (nums[i] == undefined) {
+        *        nums.splice(i, 1);
+        *        i--;
+        *    }
+        *}    
+    */
+
+    /*
+     * Solution 2:
+     *for (let i = 0; i < nums.length; i++) {
+     *    if (nums[i] == val) {
+     *        nums.splice(i, 1);
+     *        i--;
+     *    }
+     *}
+     */
+
+    //Solution 3: Two Pointer
+    let k = 0;
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] != val) {
+            nums[k] = nums[i];
+            k++;
+        } else {
+            nums.length--;
+        }
+    }
 };
 
 let nums = [0, 1, 2, 2, 3, 0, 4, 2];
