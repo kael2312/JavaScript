@@ -10,17 +10,18 @@
 
 var firstUniqChar = function (s) {
     let arrCharacter = [...s];
-    let char;
+    let index;
     for (let i = 0; i < arrCharacter.length; i++) {
         if (
             s.indexOf(arrCharacter[i]) == i &&
             s.indexOf(arrCharacter[i], i + 1) === -1
         ) {
-            char = arrCharacter[i];
+            index = arrCharacter.findIndex((x) => x === arrCharacter[i]);
             break;
+        } else {
+            index = -1;
         }
     }
-    let index = arrCharacter.findIndex((x) => x === char);
     return index;
 };
 
