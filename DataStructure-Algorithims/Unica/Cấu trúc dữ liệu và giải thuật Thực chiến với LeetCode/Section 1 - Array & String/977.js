@@ -11,11 +11,7 @@
 */
 
 var sortedSquares = function (nums) {
-    return nums
-        .map((x) => x * x)
-        .sort(function (a, b) {
-            return a - b;
-        });
+    return nums.map((x) => x * x).sort((a, b) => a - b);
 };
 
 let example = [-4, -1, 0, 3, 10];
