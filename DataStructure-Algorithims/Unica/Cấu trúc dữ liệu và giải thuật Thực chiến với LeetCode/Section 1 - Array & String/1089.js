@@ -19,11 +19,10 @@
 var duplicateZeros = function (array) {
     for (let i = 0; i < array.length; i++) {
         if (array[i] === 0) {
-            for (let j = array.length - 1; j >= i; j--) {
+            for (let j = array.length - 2; j >= i; j--) {
                 array[j + 1] = array[j];
             }
             i++;
-            array.length--;
         }
     }
     return array;
