@@ -30,15 +30,13 @@ function InsertionSort(params) {
 
 function SelectionSort(arrayNumber) {
     for (let i = 0; i < arrayNumber.length; i++) {
-        let indexMin = i + 1;
-        let min = arrNumber[i + 1];
+        let indexMin = i;
         for (let j = i + 1; j < arrayNumber.length; j++) {
-            if (arrayNumber[j] < min) {
-                min = arrayNumber[j];
+            if (arrayNumber[j] < arrayNumber[indexMin]) {
                 indexMin = j;
             }
         }
-        if (min < arrNumber[i]) {
+        if (arrNumber[indexMin] < arrNumber[i]) {
             let temp = arrayNumber[i];
             arrayNumber[i] = arrayNumber[indexMin];
             arrayNumber[indexMin] = temp;
