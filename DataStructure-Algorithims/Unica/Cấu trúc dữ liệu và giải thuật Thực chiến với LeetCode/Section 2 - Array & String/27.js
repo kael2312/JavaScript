@@ -50,13 +50,12 @@ var removeElement = function (nums, val) {
         if (nums[i] != val) {
             nums[k] = nums[i];
             k++;
-        } else {
-            nums.length--;
         }
     }
+    return k;
 };
 
-let nums = [0, 1, 2, 2, 3, 0, 4, 2];
-let val = 2;
+let nums = [3, 2, 2, 3];
+let val = 3;
 console.log(removeElement(nums, val));
 console.log(nums);
