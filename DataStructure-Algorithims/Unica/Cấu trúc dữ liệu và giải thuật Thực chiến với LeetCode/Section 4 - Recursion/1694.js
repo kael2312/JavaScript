@@ -1,0 +1,1 @@
+var reformatNumber = function (number) {};
