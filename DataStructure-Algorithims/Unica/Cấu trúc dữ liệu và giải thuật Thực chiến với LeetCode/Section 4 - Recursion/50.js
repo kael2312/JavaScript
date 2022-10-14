@@ -1,17 +1,16 @@
 var myPow = function (x, n) {
     if (n == 0) return 1;
-    if (n > 0) return positiveNumber(x, n);
-    if (n < 0) return negativeNumber(x, n * -1);
+    if (n < 0) {
+        n = -n;
+        x = 1 / x;
+    }
+    let t = myPow(x, Math.floor(n / 2));
+
+    if (n % 2 == 0) {
+        return t * t;
+    } else {
+        return x * t * t;
+    }
 };
-
-function positiveNumber(x, n) {
-    if (n == 1) return x;
-    return x * positiveNumber(x, n - 1);
-}
-
-function negativeNumber(x, n) {
-    if (n == 1) return 1 / x;
-    return 1 / (x * positiveNumber(x, n - 1));
-}
 
 console.log('Bài 50: ', myPow(2, -2));
