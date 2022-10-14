@@ -45,7 +45,57 @@ function SelectionSort(arrayNumber) {
     return arrayNumber;
 }
 
-let arrNumber = [3, 2, 10, 5, 8, 4, 7];
+function MergeSort(params) {
+    return implementMergeSort(params, 0, params.length - 1);
+}
+
+function implementMergeSort(arr, indexLeft, indexRight) {
+    if (indexLeft == indexRight) {
+        let newArr = [arr[indexLeft]];
+        return newArr;
+    }
+
+    // Chia ra
+    let indexMiddle = Math.floor((indexLeft + indexRight) / 2);
+    let arrayLeft = implementMergeSort(arr, indexLeft, indexMiddle);
+    let arrayRight = implementMergeSort(arr, indexMiddle + 1, indexRight);
+    let arrayResult = [];
+    let arrayResultLength = arrayLeft.length + arrayRight.length;
+
+    // Hợp vào;
+    let i = 0;
+    let iL = 0;
+    let iR = 0;
+    while (i < arrayResultLength) {
+        if (iL < arrayLeft.length && iR < arrayRight.length) {
+            if (arrayLeft[iL] < arrayRight[iR]) {
+                arrayResult[i] = arrayLeft[iL];
+                iL++;
+                i++;
+            } else {
+                arrayResult[i] = arrayRight[iR];
+                iR++;
+                i++;
+            }
+        } else {
+            // Dãy bên trái đã được đẩy hết vào result
+            if (iR < arrayRight.length) {
+                arrayResult[i] = arrayRight[iR];
+                iR++;
+                i++;
+                // Dãy bên phải đã được đẩy hết vào result
+            } else {
+                arrayResult[i] = arrayLeft[iL];
+                iL++;
+                i++;
+            }
+        }
+    }
+    return arrayResult;
+}
+
+let arrNumber = [5, 1, 1, 2, 0, 0];
 console.log('Bubble Sort: ', BubbleSort(arrNumber));
 console.log('Insertion Sort: ', InsertionSort(arrNumber));
 console.log('Selection Sort: ', SelectionSort(arrNumber));
+console.log('Merge Sort: ', MergeSort(arrNumber));
