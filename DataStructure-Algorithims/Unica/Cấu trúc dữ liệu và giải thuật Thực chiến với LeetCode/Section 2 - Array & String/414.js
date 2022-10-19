@@ -20,26 +20,37 @@
 */
 
 var thirdMax = function (arrNumbs) {
-    let threeNumSortedArr = [-1, -1, -1];
+    let threeNumSortedArr = [];
+
+    //Insert từng phần tử vào mảng sắp xếp
     for (let i = 0; i < arrNumbs.length; i++) {
         insert(threeNumSortedArr, arrNumbs[i]);
     }
-    if (threeNumSortedArr[2] == -1) return threeNumSortedArr[0];
+    if (threeNumSortedArr.length <= 2) return threeNumSortedArr[0];
     return threeNumSortedArr[2];
-    // return threeNumSortedArr;
 };
 
 function insert(maxArray, insertNumber) {
-    let i = 0;
-    while (i < maxArray.length) {
-        if (insertNumber == maxArray[i]) return;
-        else if (insertNumber > maxArray[i]) {
-            break;
-        } else {
-            i++;
+    if (maxArray.length > 0) {
+        for (let i = 0; i < 3; i++) {
+            if (!maxArray[i]) {
+                maxArray[i] = insertNumber;
+                return;
+            } else {
+                if (insertNumber == maxArray[i]) return;
+                else if (insertNumber > maxArray[i]) {
+                    for (let j = maxArray.length; j > i; j--) {
+                        maxArray[j] = maxArray[j - 1];
+                    }
+                    maxArray[i] = insertNumber;
+                    return;
+                }
+            }
         }
+    } else {
+        maxArray[0] = insertNumber;
     }
 }
 
-let numbs = [2, 2, 3, 1];
-console.log(thirdMax(numbs));
+let numbs = [1, 2];
+console.log('Leetcode 414: ', thirdMax(numbs));
