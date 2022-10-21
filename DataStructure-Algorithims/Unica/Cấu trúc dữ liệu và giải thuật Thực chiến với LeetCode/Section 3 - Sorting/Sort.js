@@ -99,45 +99,100 @@ function implementMergeSort(arr, indexLeft, indexRight) {
 }
 
 function QuickSort() {
-    let params = [6, 7, 8, 5, 4, 1, 2, 3];
-    let key = 3;
-    let iR = params.length - 1;
-    let iL = 0;
-    while (iL < iR) {
-        while (params[iL] < params[key]) iL++;
-        while (params[iR] > params[key]) iR--;
-        let temp = params[iL];
-        params[iL] = params[iR];
-        params[iR] = temp;
-        iL++;
-        iR--;
-        // if (params[iL] >= params[key]) {
-        //     // số trước key lớn hơn key
-        //     if (params[iR] <= params[key]) {
-        //         // số sau key nhỏ hơn key
-        //         let temp = params[iL];
-        //         params[iL] = params[iR];
-        //         params[iR] = temp;
-        //         iL++;
-        //         iR--;
-        //     } else {
-        //         //số sau key lớn hơn key
-        //         iR--;
-        //     }
-        // } else if (params[iL] < params[key]) {
-        //     // số trước key nhỏ hơn key
-        //     if (params[iR] < params[key]) {
-        //         // số sau key nhỏ hơn key
-        //         iL++;
-        //     } else {
-        //         //số sau key lớn hơn key
-        //         iL++;
-        //         iR--;
-        //     }
-        // }
-    }
+    let beforeQuick = [1, 5, 3, 2, 8, 7, 6, 4];
+    console.log('Quick sort start: ', beforeQuick);
+    implementQuickSort(beforeQuick, 0, beforeQuick.length - 1);
+    console.log('Quick sort end: ', beforeQuick);
+}
 
-    return params;
+function implementQuickSort(arr, indexLeft, indexRight) {
+    if (indexLeft >= indexRight) return;
+
+    // B1. Chọn khóa
+    let key = arr[Math.floor((indexLeft + indexRight) / 2)];
+    console.log('Khóa: ', key);
+
+    // B2. Phân bố lại mảng
+    let trueIndex = QuickSortPartition(arr, indexLeft, indexRight, key);
+    console.log('True index: ', trueIndex);
+    console.log('Arr: ', arr);
+
+    // Chia ra
+    implementQuickSort(arr, indexLeft, trueIndex - 1);
+    implementQuickSort(arr, trueIndex, indexRight);
+}
+
+function QuickSortPartition(arr, indexLeft, indexRight, key) {
+    let iR = indexRight;
+    let iL = indexLeft;
+    while (iL <= iR) {
+        while (arr[iR] > key) iR--;
+        while (arr[iL] < key) iL++;
+        if (iL <= iR) {
+            let temp = arr[iL];
+            arr[iL] = arr[iR];
+            arr[iR] = temp;
+            iL++;
+            iR--;
+        }
+    }
+    return iL;
+}
+
+function ongDevQuickSort() {
+    let ongDevBeforeQuick = [6, 5, 3, 2, 8, 7, 1, 4];
+    console.log('Quick sort II start: ', ongDevBeforeQuick);
+    ongDevImplementQuickSort(
+        ongDevBeforeQuick,
+        0,
+        ongDevBeforeQuick.length - 1
+    );
+    console.log('Quick sort II end: ', ongDevBeforeQuick);
+}
+
+function ongDevImplementQuickSort(params, indexLeft, indexRight) {
+    if (indexLeft >= indexRight) return;
+
+    //B1.Chọn khóa
+    let key = params[0];
+
+    //B2. Phân bố lại mảng
+    let trueIndex = ongDevPartition(params, indexLeft, indexRight, key);
+
+    // Chia ra
+    ongDevImplementQuickSort(params, indexLeft, trueIndex - 1);
+    ongDevImplementQuickSort(params, trueIndex + 1, indexRight);
+}
+
+function ongDevPartition(params, indexLeft, indexRight, key) {
+    let iL = indexLeft;
+    let iR = indexRight;
+    while (iL < iR) {
+        if (iL == iR) break;
+        while (params[iR] > key) {
+            iR--;
+            if (iL == iR) break;
+        }
+        if (iL == iR) break;
+        if (params[iR] <= key) {
+            params[iL] = params[iR];
+            iL++;
+        }
+        if (iL == iR) break;
+        while (params[iL] < key) {
+            iL++;
+            if (iL == iR) break;
+        }
+        if (iL == iR) break;
+        if (params[iL] > key) {
+            params[iR] = params[iL];
+            iR--;
+        }
+    }
+    if (iL == iR) {
+        params[iL] = key;
+        return iL;
+    }
 }
 
 let arrNumber = [1, 5, 3, 2, 8, 7, 6, 4];
@@ -146,3 +201,4 @@ console.log('Insertion Sort: ', InsertionSort(arrNumber));
 console.log('Selection Sort: ', SelectionSort(arrNumber));
 console.log('Merge Sort: ', MergeSort());
 console.log('Quick Sort: ', QuickSort());
+console.log('Quick Sort PII: ', ongDevQuickSort());
