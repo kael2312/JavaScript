@@ -99,7 +99,7 @@ function implementMergeSort(arr, indexLeft, indexRight) {
 }
 
 function QuickSort() {
-    let beforeQuick = [1, 5, 3, 2, 8, 7, 6, 4];
+    let beforeQuick = [1, 2, 3, 5, 8, 7, 6, 4];
     console.log('Quick sort start: ', beforeQuick);
     implementQuickSort(beforeQuick, 0, beforeQuick.length - 1);
     console.log('Quick sort end: ', beforeQuick);
@@ -140,7 +140,7 @@ function QuickSortPartition(arr, indexLeft, indexRight, key) {
 }
 
 function ongDevQuickSort() {
-    let ongDevBeforeQuick = [6, 5, 3, 2, 8, 7, 1, 4];
+    let ongDevBeforeQuick = [7, 2, 4, 9, 6, 5, 10];
     console.log('Quick sort II start: ', ongDevBeforeQuick);
     ongDevImplementQuickSort(
         ongDevBeforeQuick,
@@ -154,7 +154,7 @@ function ongDevImplementQuickSort(params, indexLeft, indexRight) {
     if (indexLeft >= indexRight) return;
 
     //B1.Chọn khóa
-    let key = params[0];
+    let key = params[indexLeft];
 
     //B2. Phân bố lại mảng
     let trueIndex = ongDevPartition(params, indexLeft, indexRight, key);
