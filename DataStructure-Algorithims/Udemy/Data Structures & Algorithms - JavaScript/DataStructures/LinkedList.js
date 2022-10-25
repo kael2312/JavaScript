@@ -127,12 +127,35 @@ class LinkedList {
 
         return this;
     }
+
+    reverseNotUsingTail() {
+        let currentNode = this.head;
+        let nextNode = this.head.next;
+        while (currentNode.next != null) {
+            currentNode.next = nextNode.next;
+            nextNode.next = this.head;
+            this.head = nextNode;
+            nextNode = currentNode.next;
+        }
+        return this;
+    }
 }
 
-// const linkedList = new LinkedList(4);
-// linkedList.insertHead(3);
-// linkedList.insertHead(2);
-// linkedList.insertHead(1);
-// console.log(linkedList);
+function reverseUsingRecursion(head) {
+    let nextNode = head.next;
+    if (nextNode.next == null) {
+        nextNode.next = head;
+        head.next = null;
+        head = nextNode;
+        return head;
+    }
+    return reverseUsingRecursion(head.next);
+}
+
+const linkedList = new LinkedList(4);
+linkedList.insertHead(3);
+linkedList.insertHead(2);
+linkedList.insertHead(1);
+console.log(linkedList);
 // linkedList.reverse();
-// console.log(linkedList);
+console.log('Reverse:', linkedList);
