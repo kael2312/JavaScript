@@ -73,6 +73,23 @@ MyLinkedList.prototype.deleteAtIndex = function (index, value) {
         return prevNode;
     }
     if (index < 0 || index >= this.length) return null;
+    if ((index = this.length - 1)) {
+        if (!this.head) return undefined;
+        let temp = this.head;
+        let preNode = this.head;
+        while (temp.next) {
+            preNode = temp;
+            temp = temp.next;
+        }
+        this.tail = preNode;
+        this.tail.next = null;
+        this.length--;
+        if (this.length === 0) {
+            this.head = null;
+            this.tail = null;
+        }
+        return temp;
+    }
     let prevNode = this.getAtIndex(index - 1);
     let deleteNode = prevNode.next;
     prevNode.next = deleteNode.next;
