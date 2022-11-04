@@ -3,19 +3,21 @@ var isValid = function (s) {
     let arrResult = [];
     for (let i = 0; i < arrInput.length; i++) {
         let temp = arrInput[i];
-        if (temp == '(' || temp == '[' || temp == '{') {
-            arrResult.push(temp);
-        } else {
-            let firstItem = arrResult[arrResult.length - 1];
-            if (
-                (firstItem == '(' && temp == ')') ||
-                (firstItem == '[' && temp == ']') ||
-                (firstItem == '{' && temp == '}')
-            ) {
-                arrResult.pop();
-            } else {
-                return false;
-            }
+        switch (temp) {
+            case '(':
+                arrResult.push(')');
+                break;
+            case '[':
+                arrResult.push(']');
+                break;
+            case '{':
+                arrResult.push('}');
+                break;
+            default:
+                if (temp != arrResult.pop()) {
+                    return false;
+                }
+                break;
         }
     }
     return !arrResult.length;
