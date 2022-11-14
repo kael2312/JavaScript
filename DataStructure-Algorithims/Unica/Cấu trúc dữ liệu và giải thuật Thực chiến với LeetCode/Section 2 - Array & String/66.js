@@ -1,9 +1,16 @@
 var plusOne = function (digits) {
-    let number = BigInt(digits.join(''));
-    number = number + 1;
-    let result = Array.from(String(number), Number);
-    return result;
+    let rememberNumber = 1;
+    for (let i = digits.length - 1; i >= 0; i--) {
+        let sum = digits[i] + rememberNumber;
+        digits[i] = sum % 10;
+        rememberNumber = Math.floor(sum / 10);
+    }
+    if (rememberNumber == 1) {
+        digits.unshift(1);
+    }
+
+    return digits;
 };
 
-let digits66 = [6, 1, 4, 5, 3, 9, 0, 1, 9, 5, 1, 8, 6, 7, 0, 5, 5, 4, 3];
+let digits66 = [9, 9];
 console.log('Leet code 66: ', plusOne(digits66));
