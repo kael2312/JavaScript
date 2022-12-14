@@ -69,4 +69,4 @@ newTree.insert(76);
 newTree.insert(18);
 newTree.insert(52);
 newTree.insert(27);
-console.log(newTree);
+console.log("Tree: ", newTree);
