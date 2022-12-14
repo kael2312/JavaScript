@@ -60,6 +60,27 @@ class BinaryTree {
         }
         return tempNode;
     }
+
+    preOrder(node) {
+        if (!node) return;
+        console.log(node.value);
+        this.preOrder(node.left);
+        this.preOrder(node.right);
+    }
+
+    inOrder(node) {
+        if (!node) return;
+        this.inOrder(node.left);
+        console.log(node.value);
+        this.inOrder(node.right);
+    }
+
+    postOrder(node) {
+        if (!node) return;
+        this.postOrder(node.left);
+        this.postOrder(node.right);
+        console.log(node.value);
+    }
 }
 
 let newTree = new BinaryTree();
