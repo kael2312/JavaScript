@@ -163,6 +163,6 @@ const linkedList = new LinkedList(4);
 linkedList.insertHead(3);
 linkedList.insertHead(2);
 // linkedList.insertHead(1);
-console.log(linkedList);
+console.log("My linked list: ", linkedList);
 // linkedList.reverse();
-console.log('Reverse:', linkedList);
+console.log('Reverse my linked list:', linkedList);
