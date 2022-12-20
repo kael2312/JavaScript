@@ -142,14 +142,6 @@ class LinkedList {
 }
 
 function reverseUsingRecursion(head) {
-    // let nextNode = head.next;
-    // if (nextNode.next == null) {
-    //     nextNode.next = head;
-    //     head.next = null;
-    //     head = nextNode;
-    //     return head;
-    // }
-    // return reverseUsingRecursion(head.next);
     if (head == null) return null;
     let nextNode = head.next;
     if (nextNode == null) return head;
@@ -159,10 +151,41 @@ function reverseUsingRecursion(head) {
     return newHead;
 }
 
+function mergeTwoLists(list1, list2) {
+    if (list1 == null) return list2;
+    if (list2 == null) return list1;
+
+    if (list1.value <= list2.value) {
+        nextNode = list1.next;
+        newNode = mergeTwoLists(nextNode, list2);
+        list1.next = newNode;
+        return list1;
+    } else {
+        nextNode = list2.next;
+        newNode = mergeTwoLists(list1, nextNode);
+        list2.next = newNode;
+        return list2;
+    }
+}
+
+//list1: 1 -> 2 -> 4
+//list2: 1 -> 3 -> 4
+//1 -> 1 -> 2 -> 3 -> 4 -> 4
+
 const linkedList = new LinkedList(4);
 linkedList.insertHead(3);
 linkedList.insertHead(2);
 // linkedList.insertHead(1);
-console.log("My linked list: ", linkedList);
+console.log('My linked list: ', linkedList);
 // linkedList.reverse();
 console.log('Reverse my linked list:', linkedList);
+const linkedList1 = new LinkedList(1);
+linkedList1.insertTail(3);
+const linkedList2 = new LinkedList(2);
+linkedList2.insertTail(4);
+console.log('Linked list 1: ', linkedList1);
+console.log('Linked list 2: ', linkedList2);
+console.log(
+    'Merge two list: ',
+    mergeTwoLists(linkedList1.head, linkedList2.head)
+);
