@@ -81,6 +81,17 @@ class BinaryTree {
         this.postOrder(node.right);
         console.log(node.value);
     }
+
+    maxDepth(node) {
+        if (node == null) return 0;
+        let heightOfLeftTree = this.maxDept(node.left);
+        let heightOfRightTree = this.maxDept(node.right);
+        let result =
+            heightOfLeftTree > heightOfRightTree
+                ? heightOfLeftTree
+                : heightOfRightTree;
+        return result + 1;
+    }
 }
 
 let newTree = new BinaryTree();
@@ -90,4 +101,4 @@ newTree.insert(76);
 newTree.insert(18);
 newTree.insert(52);
 newTree.insert(27);
-console.log("Tree: ", newTree);
+console.log('Tree: ', newTree);

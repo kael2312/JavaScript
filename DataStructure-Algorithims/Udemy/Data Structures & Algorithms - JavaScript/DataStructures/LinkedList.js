@@ -168,6 +168,17 @@ function mergeTwoLists(list1, list2) {
     }
 }
 
+function swapPairs(head) {
+    if (head == null) return head;
+    if (head.next == null) return head;
+    let nextNode = head.next;
+    head.next = nextNode.next;
+    nextNode.next = head;
+    let newHead = swapPairs(head.next);
+    head.next = newHead;
+    return nextNode;
+}
+
 //list1: 1 -> 2 -> 4
 //list2: 1 -> 3 -> 4
 //1 -> 1 -> 2 -> 3 -> 4 -> 4
