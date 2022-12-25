@@ -100,9 +100,7 @@ function implementMergeSort(arr, indexLeft, indexRight) {
 
 function QuickSort() {
     let beforeQuick = [1, 2, 3, 5, 8, 7, 6, 4];
-    console.log('Quick sort start: ', beforeQuick);
     implementQuickSort(beforeQuick, 0, beforeQuick.length - 1);
-    console.log('Quick sort end: ', beforeQuick);
 }
 
 function implementQuickSort(arr, indexLeft, indexRight) {
@@ -110,12 +108,9 @@ function implementQuickSort(arr, indexLeft, indexRight) {
 
     // B1. Chọn khóa
     let key = arr[Math.floor((indexLeft + indexRight) / 2)];
-    console.log('Khóa: ', key);
 
     // B2. Phân bố lại mảng
     let trueIndex = QuickSortPartition(arr, indexLeft, indexRight, key);
-    console.log('True index: ', trueIndex);
-    console.log('Arr: ', arr);
 
     // Chia ra
     implementQuickSort(arr, indexLeft, trueIndex - 1);
