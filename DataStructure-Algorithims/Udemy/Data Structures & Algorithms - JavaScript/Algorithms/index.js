@@ -84,12 +84,18 @@ function MergeSort(array) {
 }
 
 function QuickSort(array, leftIndex = 0, rightIndex = array.length - 1) {
-    let pivotIndex = pivot();
+    if (leftIndex < rightIndex) {
+        let pivotIndex = pivot(array, leftIndex, rightIndex);
+        QuickSort(array, leftIndex, pivotIndex - 1);
+        QuickSort(array, pivotIndex + 1, rightIndex);
+    }
+
+    return array;
 }
 
-function pivot(array, pivotIndex = 0, endIndex = array.length - 1) {
+function pivot(array, pivotIndex = 1, endIndex = array.length - 1) {
     let swapIndex = pivotIndex;
-    for (let i = 1; i < endIndex; i++) {
+    for (let i = pivotIndex + 1; i <= endIndex; i++) {
         if (array[i] < array[pivotIndex]) {
             swapIndex++;
             let temp = array[swapIndex];
@@ -103,10 +109,11 @@ function pivot(array, pivotIndex = 0, endIndex = array.length - 1) {
     return swapIndex;
 }
 
-let myArray = [4, 6, 1, 7, 3, 2, 5];
+let myArray = [7, 6, 1, 4, 3, 2, 5];
 console.log('Bubble Sort: ', BubbleSort([4, 2, 6, 5, 1, 3]));
 console.log('Selection Sort: ', SelectionSort([4, 2, 6, 5, 1, 3]));
 console.log('Insertion Sort: ', InsertionSort([4, 2, 6, 5, 1, 3]));
 console.log('Merge: ', merge([1, 3, 7, 8], [2, 4, 5, 6]));
 console.log('Merge Sort: ', MergeSort([3, 1, 4, 2]));
-console.log('Pivot: ', pivot(myArray));
+//console.log('Pivot: ', pivot(myArray));
+console.log('QuickSort: ', QuickSort(myArray));
