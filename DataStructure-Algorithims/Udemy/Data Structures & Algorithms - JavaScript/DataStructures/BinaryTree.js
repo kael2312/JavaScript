@@ -61,25 +61,37 @@ class BinaryTree {
         return tempNode;
     }
 
-    preOrder(node) {
-        if (!node) return;
-        console.log(node.value);
-        this.preOrder(node.left);
-        this.preOrder(node.right);
+    preOrder() {
+        let result = [];
+        function traversal(node) {
+            result.push(node.value);
+            if (node.left) traversal(node.left);
+            if (node.right) traversal(node.right);
+        }
+        traversal(this.root);
+        return result;
     }
 
     inOrder(node) {
-        if (!node) return;
-        this.inOrder(node.left);
-        console.log(node.value);
-        this.inOrder(node.right);
+        let result = [];
+        function traversal(node) {
+            if (node.left) traversal(node.left);
+            result.push(node.value);
+            if (node.right) traversal(node.right);
+        }
+        traversal(this.root);
+        return result;
     }
 
     postOrder(node) {
-        if (!node) return;
-        this.postOrder(node.left);
-        this.postOrder(node.right);
-        console.log(node.value);
+        let result = [];
+        function traversal(node) {
+            if (node.left) traversal(node.left);
+            if (node.right) traversal(node.right);
+            result.push(node.value);
+        }
+        traversal(this.root);
+        return result;
     }
 
     maxDepth(node) {
@@ -92,6 +104,21 @@ class BinaryTree {
                 : heightOfRightTree;
         return result + 1;
     }
+
+    bfs() {
+        let currentNode = this.root;
+        let queue = [];
+        let result = [];
+        queue.push(currentNode);
+        while (queue.length) {
+            currentNode = queue.shift();
+            result.push(currentNode.value);
+            if (currentNode.left) queue.push(currentNode.left);
+            if (currentNode.right) queue.push(currentNode.right);
+        }
+
+        return result;
+    }
 }
 
 let newTree = new BinaryTree();
@@ -101,4 +128,5 @@ newTree.insert(76);
 newTree.insert(18);
 newTree.insert(52);
 newTree.insert(27);
+newTree.insert(82);
 console.log('Tree: ', newTree);
